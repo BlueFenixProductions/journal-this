@@ -1,0 +1,11 @@
+{
+  "name": "journal-this",
+  "version": "1.0.0",
+  "description": "Turn a Claude Code work session into a dated journal entry in your own voice, saved to a folder or GitHub repo.",
+  "author": { "name": "Chris Pelatari" },
+  "homepage": "https://github.com/BlueFenixProductions/journal-this",
+  "repository": "https://github.com/BlueFenixProductions/journal-this",
+  "license": "MIT",
+  "keywords": ["journaling", "journal", "devlog", "engineering-journal", "claude-code", "skill", "writing"],
+  "skills": ["./skills/journal-this"]
+}

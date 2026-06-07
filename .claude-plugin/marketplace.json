@@ -1,0 +1,16 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "journal-this",
+  "owner": { "name": "Chris Pelatari" },
+  "description": "Blue Fenix Productions — the journal-this Claude Code plugin.",
+  "plugins": [
+    {
+      "name": "journal-this",
+      "source": "./",
+      "description": "Turn a Claude Code work session into a dated journal entry in your own voice, saved to a folder or GitHub repo.",
+      "category": "productivity",
+      "version": "1.0.0",
+      "keywords": ["journaling", "claude-code", "skill", "devlog"]
+    }
+  ]
+}
