@@ -16,8 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   structural skeleton (frontmatter, headings, footer) and prose style.
 - **Disk and GitHub destinations**, including commit + push with multi-machine
   `pull --rebase` race handling and an optional PR push mode.
-- Packaged as a **Claude Code plugin** — this repo doubles as its own
-  marketplace and ships a `/journal-this` command — plus a **GitHub release
-  zip** for manual drop-in installs.
+- Distributed as a plain **Claude Code skill** installed with a one-line
+  `install.sh` (or a manual `cp -R`), exposing a bare `/journal-this` command.
 
 [1.0.0]: https://github.com/BlueFenixProductions/journal-this/releases/tag/v1.0.0

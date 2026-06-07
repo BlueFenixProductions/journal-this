@@ -1,34 +1,32 @@
 # journal-this
 
-[![Latest release](https://img.shields.io/github/v/release/BlueFenixProductions/journal-this?sort=semver)](https://github.com/BlueFenixProductions/journal-this/releases)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
-[![Claude Code plugin](https://img.shields.io/badge/Claude%20Code-plugin-d97757.svg)](#install)
+[![Claude Code skill](https://img.shields.io/badge/Claude%20Code-skill-d97757.svg)](#install)
 
-A Claude Code **plugin** that provides the `journal-this` **skill** — it turns the current session into a dated markdown journal entry, written in *your* voice, saved to *your* journal (a local folder or a GitHub repo).
+A Claude Code **skill** that turns the current session into a dated markdown journal entry, written in *your* voice, saved to *your* journal (a local folder or a GitHub repo).
 
 It's the generalized, shareable version of a personal engineering-journal workflow: read the conversation, find what actually moved, write it up the way you'd write it, and file it (commit + push for GitHub destinations, handling the multi-machine pull–rebase race).
 
 ## Install
 
-### Option A — Plugin (recommended)
-
-Versioned and updatable through Claude Code's plugin system:
-
-```
-/plugin marketplace add BlueFenixProductions/journal-this
-/plugin install journal-this@journal-this
-```
-
-Update later with `/plugin marketplace update journal-this` then `/plugin update`.
-
-### Option B — Manual drop-in
-
-Download `journal-this.zip` from the [latest release](https://github.com/BlueFenixProductions/journal-this/releases/latest) and unzip it into your skills directory:
+One line from a clone:
 
 ```bash
-unzip journal-this.zip -d ~/.claude/skills/      # Claude Code
-unzip journal-this.zip -d ~/.agents/skills/      # Codex
+git clone https://github.com/BlueFenixProductions/journal-this
+cd journal-this
+./install.sh            # -> ~/.claude/skills/journal-this   (Claude Code)
+./install.sh --codex    # -> ~/.agents/skills/journal-this   (Codex)
 ```
+
+Then reload Claude Code (`/reload-plugins`, or restart) and type `/journal-this`.
+
+Prefer to do it by hand? It's a single folder — copy it in:
+
+```bash
+cp -R skills/journal-this ~/.claude/skills/journal-this
+```
+
+That's the whole skill: `SKILL.md` plus a config template.
 
 ## Use
 
@@ -77,25 +75,19 @@ in the session — what shipped, what broke, what's deferred — not a generic r
 ## What's in the box
 
 ```
-.claude-plugin/
-  plugin.json            # plugin manifest — this is what makes it installable
-  marketplace.json       # the repo doubles as its own marketplace
-commands/
-  journal-this.md        # the /journal-this command (hands off to the skill)
+install.sh                 # one-line installer (copies the skill into your skills dir)
 skills/
   journal-this/
-    SKILL.md             # the skill itself — the only file a manual install needs
-    config.template.json # documents every config field; setup creates the real one
+    SKILL.md               # the skill itself — the only file an install needs
+    config.template.json   # documents every config field; setup creates the real one
 CHANGELOG.md
 CONTRIBUTING.md
 LICENSE
 ```
 
-The manual-install `journal-this.zip` contains just the `skills/journal-this/` folder — `SKILL.md` + `config.template.json` — so it unzips straight into `~/.claude/skills/journal-this/`.
-
 ## Versioning & contributing
 
-Releases follow [Semantic Versioning](https://semver.org); see [CHANGELOG.md](CHANGELOG.md). Contributions welcome — see [CONTRIBUTING.md](CONTRIBUTING.md). Curious how this plugin was designed? The spec lives in [`docs/superpowers/specs/`](docs/superpowers/specs/).
+Releases follow [Semantic Versioning](https://semver.org); see [CHANGELOG.md](CHANGELOG.md). Contributions welcome — see [CONTRIBUTING.md](CONTRIBUTING.md). Curious how this was designed? The spec lives in [`docs/superpowers/specs/`](docs/superpowers/specs/) — note those design docs describe an earlier plugin-packaging approach that was later simplified to this plain skill.
 
 ## License
 
