@@ -203,7 +203,7 @@ Run:
 head -1 commands/journal-this.md
 grep -c '\$ARGUMENTS' commands/journal-this.md
 ```
-Expected: first line is `---` (frontmatter opens), and the grep count is `1` (the `$ARGUMENTS` placeholder is present).
+Expected: first line is `---` (frontmatter opens), and the grep count is `2` — `$ARGUMENTS` appears twice: in the arguments line and in the `setup` conditional. (The check's intent is "the placeholder is present"; any count ≥ 1 passes.)
 
 - [ ] **Step 3: Commit**
 
