@@ -5,6 +5,15 @@ All notable changes to **journal-this** are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Fixed
+- SKILL.md step 3 now warns about the **backslash hazard in double-quoted YAML
+  frontmatter**: a literal `\` (regex `\s`, Windows paths) in a title/description
+  must be doubled or the value JSON-stringified, otherwise strict YAML parsers
+  reject the entry and can break the journal site's build. Found by dogfooding —
+  see `docs/dogfood-findings.md` (2026-06-11).
+
 ## [1.0.0] - 2026-06-07
 
 ### Added

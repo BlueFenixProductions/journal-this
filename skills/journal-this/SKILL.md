@@ -96,6 +96,8 @@ Date = **today's date** (from the system context). If work crossed midnight, dat
 
 **If you read sample entries in step 1, replicate their skeleton exactly** — reproduce the frontmatter block with the same keys and quoting, any kicker/eyebrow line, the heading shape, and the footer. This is not optional polish: the frontmatter is frequently what the journal's tooling uses to index and sort entries, so a missing or malformed block can drop the entry from the index or break the site build. The generic structure below is only the **fallback for when there are no samples to copy**:
 
+**Backslash hazard in double-quoted frontmatter.** In a double-quoted YAML scalar, `\` starts an escape sequence, and most are illegal — a title/description that quotes a regex (`\s`, `\d`) or a Windows path ships a frontmatter block that strict YAML parsers reject, breaking the whole site build (this happened: one `\s` in a description took down six consecutive deploys of a VitePress journal). When prose needs a literal backslash inside a double-quoted value, double it (`\\s`); the safe general recipe is to JSON-stringify the value and paste the result, quotes and all.
+
 ```markdown
 # Title — what this session was about (YYYY-MM-DD)
 
