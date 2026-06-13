@@ -101,7 +101,7 @@ Date = **today's date** (from the system context). If work crossed midnight, dat
 ```markdown
 # Title — what this session was about (YYYY-MM-DD)
 
-[2–4 paragraph opener: the arc, the through-line.]
+[1–2 tight paragraphs: the arc and through-line. Lead with the punchline, not a wind-up.]
 
 ## 1. <First section>
 [Concrete prose — file paths, commit hashes, decisions, error messages. Verbatim Operator quotes where load-bearing.]
@@ -120,7 +120,14 @@ Date = **today's date** (from the system context). If work crossed midnight, dat
 Stopped here. [One sentence: state of the work + what's next.]
 ```
 
-Default style: substantial (depth over length, no filler), peer-to-peer voice, concrete refs over abstractions, explains *why* not just *what*. This is a personal record, not customer-facing copy — natural punctuation including em-dashes is fine unless the Operator's samples avoid them.
+**House style — write it for tomorrow-you, who's in a hurry.** The entry is a handoff: future-you (or a future agent doing a warm-start) depends on the load-bearing parts being *right and findable*. Hold that bar.
+
+- **Get to the point.** Lead with what happened, not a wind-up. Depth over length — every line earns its place or it's cut. No rambling, no filler, no restating the obvious.
+- **Load-bearing facts are sacred.** File paths, commit refs, decision pivots, error messages, what's deferred and where it's tracked — capture these *precisely*; a vague handoff is a broken one. Cut everything that *isn't* load-bearing.
+- **Have fun with it.** Peer-to-peer voice, concrete over abstract, *why* not just *what*. Wit is welcome where it lands; a stray emoji is fine if it earns a smile 🫡 — don't sprinkle them, and never let a joke crowd out a fact.
+- **Personal record, not customer copy.** Natural punctuation including em-dashes is fine unless the Operator's samples avoid them.
+
+The test for any sentence: *would tomorrow-you, skimming this in thirty seconds, need it?* Keep it if yes, kill it if no.
 
 ### 4. Save the entry
 
