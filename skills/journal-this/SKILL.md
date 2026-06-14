@@ -100,6 +100,8 @@ Date = **today's date** (from the system context). If work crossed midnight, dat
 
 **Backslash hazard in double-quoted frontmatter.** In a double-quoted YAML scalar, `\` starts an escape sequence, and most are illegal — a title/description that quotes a regex (`\s`, `\d`) or a Windows path ships a frontmatter block that strict YAML parsers reject, breaking the whole site build (this happened: one `\s` in a description took down six consecutive deploys of a VitePress journal). When prose needs a literal backslash inside a double-quoted value, double it (`\\s`); the safe general recipe is to JSON-stringify the value and paste the result, quotes and all.
 
+**Raw-tag hazard in the description.** The journal's index generator copies each entry's frontmatter `description` *verbatim* into a generated `index.md` that the site compiler parses as markup — so a literal `<...>` in `title`/`description` (e.g. typing `<Kicker>` to refer to the kicker) reads as an **unclosed component and breaks the whole build** (this happened: a raw `<Kicker>` in a description killed the deploy). In frontmatter, **HTML-encode** any angle brackets (`&lt;Kicker&gt;`, which renders back as `<Kicker>`) — the index prints the description as visible text, so this displays correctly where URL-encoding would show a literal `%3C`. Rewording ("the kicker line") works too. Raw tags belong only in the entry *body*, where they render as intended.
+
 ```markdown
 # Title — what this session was about (YYYY-MM-DD)
 
