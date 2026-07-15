@@ -102,7 +102,9 @@ Date = **today's date** (from the system context). If work crossed midnight, dat
 
 **Backslash hazard in double-quoted frontmatter.** In a double-quoted YAML scalar, `\` starts an escape sequence, and most are illegal — a title/description that quotes a regex (`\s`, `\d`) or a Windows path ships a frontmatter block that strict YAML parsers reject, breaking the whole site build (this happened: one `\s` in a description took down six consecutive deploys of a VitePress journal). When prose needs a literal backslash inside a double-quoted value, double it (`\\s`); the safe general recipe is to JSON-stringify the value and paste the result, quotes and all.
 
-**Raw-tag hazard in the description.** The journal's index generator copies each entry's frontmatter `description` *verbatim* into a generated `index.md` that the site compiler parses as markup — so a literal `<...>` in `title`/`description` (e.g. typing `<Kicker>` to refer to the kicker) reads as an **unclosed component and breaks the whole build** (this happened: a raw `<Kicker>` in a description killed the deploy). In frontmatter, **HTML-encode** any angle brackets (`&lt;Kicker&gt;`, which renders back as `<Kicker>`) — the index prints the description as visible text, so this displays correctly where URL-encoding would show a literal `%3C`. Rewording ("the kicker line") works too. Raw tags belong only in the entry *body*, where they render as intended.
+**Raw-tag hazard in the description.** The journal's index generator copies each entry's frontmatter `description` *verbatim* into a generated `index.md` that the site compiler parses as markup — so a literal `<...>` in `title`/`description` (e.g. typing `<Kicker>` to refer to the kicker) reads as an **unclosed component and breaks the whole build** (this happened: a raw `<Kicker>` in a description killed the deploy). In frontmatter, **HTML-encode** any angle brackets (`&lt;Kicker&gt;`, which renders back as `<Kicker>`) — the index prints the description as visible text, so this displays correctly where URL-encoding would show a literal `%3C`. Rewording ("the kicker line") works too.  Raw tags belong only in the entry *body*, where they render as intended.
+
+**Build-gate verification — run the site's build BEFORE committing (2026-07-16).** When the destination repo is a site with a build (VitePress etc.), the entry's frontmatter is *input to code*: tag registries, topic lists, and index generators are often enforced by the repo's own tests, and one unregistered tag or topic fails the whole deploy (this happened: a new page plus four unregistered journal tags took down a deploy — the site's test gate caught what the writer didn't know existed). Before committing, run the repo's build/test script (`bun run docs:build` or the equivalent found in package.json) with the new entry present, and register anything the gate demands — tags into the topics registry, required sibling pages — in the same commit. Green build first, then push: the entry isn't saved until the site that renders it agrees.
 
 ```markdown
 # Title — what this session was about (YYYY-MM-DD)
@@ -139,7 +141,7 @@ The test for any sentence: *would tomorrow-you, skimming this in thirty seconds,
 
 **Disk destination:** write the file into `destination.path`, confirm the absolute path back to the Operator. Done.
 
-**GitHub destination:**
+**GitHub destination:** if the repo has a build/test script (check package.json), run it now with the entry in place — see the build-gate hazard above; fix registry violations in the same commit. Then:
 
 ```bash
 cd <repo_path>
